@@ -16,6 +16,9 @@ interface ApiServices {
     @GET("logout")
     fun logoutUser(@Query("token") token : String) : Call<CommonResponse>
 
+    @GET("reset-password")
+    fun resetPassword(@Query("email") email : String) : Call<CommonResponse>
+
     @POST("register")
     fun registerUser(@Body userData: RegisterInfo) : Call<CommonResponse>
 

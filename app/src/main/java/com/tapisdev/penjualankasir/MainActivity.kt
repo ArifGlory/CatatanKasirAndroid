@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.tapisdev.lokamotor.base.BaseActivity
 import com.tapisdev.penjualankasir.activity.HomeActivity
+import com.tapisdev.penjualankasir.activity.LupaPasswordActivity
 import com.tapisdev.penjualankasir.activity.RegisterActivity
 import com.tapisdev.penjualankasir.activity.SplashActivity
 import com.tapisdev.penjualankasir.databinding.ActivityMainBinding
@@ -35,6 +36,10 @@ class MainActivity : BaseActivity() {
         }
         binding.tvKeRegister.setOnClickListener {
             val i = Intent(this,RegisterActivity::class.java)
+            startActivity(i)
+        }
+        binding.tvLupaPass.setOnClickListener {
+            val i = Intent(this,LupaPasswordActivity::class.java)
             startActivity(i)
         }
     }

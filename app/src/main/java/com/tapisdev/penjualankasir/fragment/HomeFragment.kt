@@ -109,6 +109,13 @@ class HomeFragment : Fragment() {
             val i = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(i)
         }
+
+        val current = LocalDateTime.now()
+        Log.d(TAG_GET_BULAN,"bulan sekarang : "+current.monthValue)
+        current_month = current.monthValue.toString()
+        var current_month_number = current_month.toInt() - 1
+        binding.spPilihBulan.setSelection(current_month_number)
+
         binding.spPilihBulan.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -120,6 +127,7 @@ class HomeFragment : Fragment() {
                 selectedNomorBulan = position + 1
                 Log.d(TAG_GET_BULAN,"nama bulan : "+ binding.spPilihBulan.getItemAtPosition(position).toString())
                 Log.d(TAG_GET_BULAN,"nomor bulan : "+ selectedNomorBulan)
+                getDataChart(selectedNomorBulan.toString())
 
                 //do get chart data
             }
@@ -128,14 +136,11 @@ class HomeFragment : Fragment() {
         })
         selectedBulan = binding.spPilihBulan.getItemAtPosition(0).toString()
 
-        val current = LocalDateTime.now()
-        Log.d(TAG_GET_BULAN,"bulan sekarang : "+current.monthValue)
-        current_month = current.monthValue.toString()
 
         updateUI()
         getDataPelanggan()
         getDataBarang()
-        getDataChart(current_month)
+        //getDataChart(current_month)
         configChartModel()
         return root
     }
@@ -298,6 +303,9 @@ class HomeFragment : Fragment() {
                         listDataChart.addAll(it)
                     }
                     configChartModel()
+                    if (listDataChart.size == 0){
+                        Toasty.info(requireContext(), "tidak ada data transaksi pada bulan yang dipilih ", Toast.LENGTH_LONG, true).show()
+                    }
 
 
                 }else {
