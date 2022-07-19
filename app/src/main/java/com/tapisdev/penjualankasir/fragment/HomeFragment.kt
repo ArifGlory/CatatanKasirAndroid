@@ -114,7 +114,7 @@ class HomeFragment : Fragment() {
     }
 
     fun configChartModel(){
-        binding.chart.setBackgroundColor(Color.WHITE)
+        /*binding.chart.setBackgroundColor(Color.WHITE)
         binding.chart.setDrawGridBackground(false)
         binding.chart.setMaxVisibleValueCount(60)
         binding.chart.setPinchZoom(true)
@@ -146,7 +146,7 @@ class HomeFragment : Fragment() {
         val data = LineData(dataSets)
         binding.chart.data = data
 
-        binding.chart.animateX(1500)
+        binding.chart.animateX(1500)*/
     }
 
     fun resetPagination(){

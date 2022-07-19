@@ -1,13 +1,18 @@
 package com.tapisdev.penjualankasir.adapter
 
 
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import cn.pedant.SweetAlert.SweetAlertDialog
+import com.tapisdev.penjualankasir.activity.HomeActivity
 import com.tapisdev.penjualankasir.activity.SelectPelangganActivity
 import com.tapisdev.penjualankasir.databinding.ItemsPelangganBinding
 import com.tapisdev.penjualankasir.model.Pelanggan
+import java.io.Serializable
 
 class AdapterPelanggan(private val list:ArrayList<Pelanggan>) : RecyclerView.Adapter<AdapterPelanggan.MyViewHolder>(){
 
@@ -28,6 +33,8 @@ class AdapterPelanggan(private val list:ArrayList<Pelanggan>) : RecyclerView.Ada
         :RecyclerView.ViewHolder(binding.root)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+
         with(holder){
             with(list.get(position)){
 
@@ -44,6 +51,27 @@ class AdapterPelanggan(private val list:ArrayList<Pelanggan>) : RecyclerView.Ada
                    /* val i  = Intent(binding.rlPelanggan.context,DetailBarangActivity::class.java)
                     i.putExtra("pelanggan",list?.get(position))
                     binding.rlPelanggan.context.startActivity(i)*/
+                }
+                binding.rlPelanggan.setOnLongClickListener {
+                    SweetAlertDialog(binding.rlPelanggan.context, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Hapus Pelanggan")
+                        .setContentText("Anda dapat menghapus pelanggan ini")
+                        .setConfirmText("Hapus")
+                        .setConfirmClickListener { sDialog ->
+                            sDialog.dismissWithAnimation()
+                            if (binding.rlPelanggan.context is HomeActivity) {
+                                (binding.rlPelanggan.context as HomeActivity).deletePelanggan(list?.get(position).id!!)
+                            }
+                        }
+                        .setCancelButton(
+                            "Batal"
+                        ) {
+                                sDialog -> sDialog.dismissWithAnimation()
+
+                        }
+                        .show()
+
+                    return@setOnLongClickListener true
                 }
 
             }

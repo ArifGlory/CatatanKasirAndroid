@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
         <activity
+            android:name=".activity.UbahProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.DetailHutangActivity"
             android:exported="false" />
         <activity

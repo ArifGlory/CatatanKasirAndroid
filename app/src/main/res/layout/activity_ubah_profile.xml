@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RegisterActivity">
+
+    <RelativeLayout
+        android:id="@+id/relaToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="5dp"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:tint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toEndOf="@+id/ivBack"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/cera_black"
+                android:text="Ubah Profil"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relaToolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/relaToolbar"
+                app:cardBackgroundColor="@color/grey_200"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <com.tapisdev.penjualankasir.customview.EditText_Roboto_Regular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="sans-serif"
+                        android:hint="No. Handphone"
+                        android:id="@+id/etPhone"
+                        android:paddingBottom="15.7dp"
+                        android:paddingLeft="16.3dp"
+                        android:paddingTop="15.7dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_800"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <com.tapisdev.penjualankasir.customview.EditText_Roboto_Regular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:fontFamily="sans-serif"
+                        android:hint="Nama Pemilik"
+                        android:id="@+id/etNamaPemilik"
+                        android:paddingBottom="15.7dp"
+                        android:paddingLeft="16.3dp"
+                        android:paddingTop="15.7dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_800"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <com.tapisdev.penjualankasir.customview.EditText_Roboto_Regular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:fontFamily="sans-serif"
+                        android:hint="Nama UMKM"
+                        android:id="@+id/etNamaUmkm"
+                        android:paddingBottom="15.7dp"
+                        android:paddingLeft="16.3dp"
+                        android:paddingTop="15.7dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_800"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <com.tapisdev.penjualankasir.customview.EditText_Roboto_Regular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:fontFamily="sans-serif"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:hint="Alamat UMKM"
+                        android:id="@+id/etAlamat"
+                        android:paddingBottom="15.7dp"
+                        android:paddingLeft="16.3dp"
+                        android:paddingTop="15.7dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_800"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Simpan Perubahan"
+                        android:id="@+id/btnUpdate"
+                        android:fontFamily="@font/cera_medium"
+                        android:textSize="15sp"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="15dp"/>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+</RelativeLayout>

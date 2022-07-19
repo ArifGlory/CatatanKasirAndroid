@@ -22,6 +22,9 @@ interface ApiServices {
     @GET("user/detail")
     fun detailUser(@Query("token") token : String) : Call<DetailUserResponse>
 
+    @POST("user/update")
+    fun editProfil(@Query("token") token: String?,@Body file : RequestBody) : Call<CommonResponse>
+
     @POST("barang/add")
     fun addBarang(@Query("token") token: String?,@Body file : RequestBody) : Call<CommonResponse>
 
@@ -48,6 +51,9 @@ interface ApiServices {
 
     @GET("pelanggan/data/all")
     fun getAllPelanggan(@Query("token") token: String?) : Call<AllPelangganResponse>
+
+    @GET("pelanggan/delete")
+    fun deletePelanggan(@Query("token") token: String?,@Query("id_pelanggan") id_pelanggan : String) : Call<CommonResponse>
 
     @POST("transaksi/store")
     fun saveTransaksi(@Query("token") token: String?,@Body orderInfo: OrderInfo) : Call<CommonResponse>

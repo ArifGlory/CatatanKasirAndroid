@@ -32,7 +32,8 @@ class ProfileActivity : BaseActivity() {
             startActivity(i)
         }
         binding.tvEditProfile.setOnClickListener {
-
+            val i = Intent(this,UbahProfileActivity::class.java)
+            startActivity(i)
         }
 
         updateUI()

@@ -22,6 +22,7 @@ import com.tapisdev.penjualankasir.model.Pelanggan
 import com.tapisdev.penjualankasir.model.SharedVariable
 import com.tapisdev.penjualankasir.model.UserPreference
 import com.tapisdev.penjualankasir.response.AllPelangganResponse
+import com.tapisdev.penjualankasir.response.CommonResponse
 import com.tapisdev.penjualankasir.util.ApiMain
 import es.dmoral.toasty.Toasty
 import retrofit2.Call
@@ -32,7 +33,7 @@ class HomeActivity : BaseActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     lateinit var nextFragment  : Fragment
-
+    var TAG_DELETE_PELANGGAN = "deletepelanggan"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,6 +102,42 @@ class HomeActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+    }
+
+    fun deletePelanggan(id_pelanggan : String){
+        showLoading(this)
+
+        ApiMain().services.deletePelanggan(mUserPref.getToken(),id_pelanggan).enqueue(object :
+            retrofit2.Callback<CommonResponse> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onResponse(call: Call<CommonResponse>, response: Response<CommonResponse>) {
+                dismissLoading()
+                //Tulis code jika response sukses
+                Log.d(TAG_DELETE_PELANGGAN,response.toString())
+                Log.d(TAG_DELETE_PELANGGAN,"http status : "+response.code())
+
+                if(response.code() == 200) {
+                    showSuccessMessage("Hapus pelanggan berhasil !")
+
+                    finish()
+                    startActivity(intent)
+                }else {
+                    Toasty.error(this@HomeActivity, "hapus pelanggan gagal", Toast.LENGTH_SHORT, true).show()
+                    Log.d(TAG_DELETE_PELANGGAN,"err :"+response.message())
+                }
+            }
+            override fun onFailure(call: Call<CommonResponse>, t: Throwable){
+                //Tulis code jika response fail
+                dismissLoading()
+                val errMsg = t.message.toString()
+                if (errMsg.takeLast(6).equals("$.null")){
+                    Log.d(TAG_DELETE_PELANGGAN,"rusak nya gpapa kok  ")
+                }else{
+                    Toasty.error(this@HomeActivity, "response failure for more data", Toast.LENGTH_SHORT, true).show()
+                    Log.d(TAG_DELETE_PELANGGAN,"rusak : "+t.message.toString())
+                }
+            }
+        })
     }
 
     private fun addFragment(fragment: Fragment) {
