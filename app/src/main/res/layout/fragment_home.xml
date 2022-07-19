@@ -173,6 +173,28 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/cera_black_italic"
+                android:text="Pilih Bulan"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spPilihBulan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/blue_outline"
+                android:entries="@array/bulan"
+                android:padding="5dp"
+                android:popupBackground="@color/white"
+                tools:listitem="@layout/row_spinner_chart" />
+
             <androidx.cardview.widget.CardView
                 android:visibility="visible"
                 android:id="@+id/cardKategori"

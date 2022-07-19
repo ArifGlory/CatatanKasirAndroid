@@ -4,12 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.DashPathEffect
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +39,7 @@ import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Response
+import java.time.LocalDateTime
 
 class HomeFragment : Fragment() {
 
@@ -61,8 +65,13 @@ class HomeFragment : Fragment() {
     var TAG_GET_BARANG = "pelanggan"
     var TAG_GET_CHART = "datachart"
     var TAG_GET_MORE_PELANGGAN = "morepelanggan"
+    var TAG_GET_BULAN = "selectbulan"
     var KATA_KUNCI = ""
+    var selectedBulan = ""
+    var selectedNomorBulan = 1
+    var current_month = ""
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -100,11 +109,33 @@ class HomeFragment : Fragment() {
             val i = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(i)
         }
+        binding.spPilihBulan.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                selectedBulan = binding.spPilihBulan.getItemAtPosition(position).toString()
+                selectedNomorBulan = position + 1
+                Log.d(TAG_GET_BULAN,"nama bulan : "+ binding.spPilihBulan.getItemAtPosition(position).toString())
+                Log.d(TAG_GET_BULAN,"nomor bulan : "+ selectedNomorBulan)
+
+                //do get chart data
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        })
+        selectedBulan = binding.spPilihBulan.getItemAtPosition(0).toString()
+
+        val current = LocalDateTime.now()
+        Log.d(TAG_GET_BULAN,"bulan sekarang : "+current.monthValue)
+        current_month = current.monthValue.toString()
 
         updateUI()
         getDataPelanggan()
         getDataBarang()
-        getDataChart()
+        getDataChart(current_month)
         configChartModel()
         return root
     }
@@ -114,7 +145,7 @@ class HomeFragment : Fragment() {
     }
 
     fun configChartModel(){
-        /*binding.chart.setBackgroundColor(Color.WHITE)
+        binding.chart.setBackgroundColor(Color.WHITE)
         binding.chart.setDrawGridBackground(false)
         binding.chart.setMaxVisibleValueCount(60)
         binding.chart.setPinchZoom(true)
@@ -146,7 +177,7 @@ class HomeFragment : Fragment() {
         val data = LineData(dataSets)
         binding.chart.data = data
 
-        binding.chart.animateX(1500)*/
+        binding.chart.animateX(1500)
     }
 
     fun resetPagination(){
@@ -248,9 +279,10 @@ class HomeFragment : Fragment() {
         })
     }
 
-    fun getDataChart(){
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getDataChart(selected_month : String){
 
-        ApiMain().services.getDataChart(mUserPref.getToken()).enqueue(object :
+        ApiMain().services.getDataChart(mUserPref.getToken(),selected_month).enqueue(object :
             retrofit2.Callback<ChartTransaksiResponse> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<ChartTransaksiResponse>, response: Response<ChartTransaksiResponse>) {
@@ -327,7 +359,7 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         getDataPelanggan()
-        getDataChart()
+        //getDataChart(current_month)
     }
 
     override fun onDestroyView() {

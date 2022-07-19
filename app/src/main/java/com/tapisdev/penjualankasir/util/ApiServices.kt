@@ -68,7 +68,7 @@ interface ApiServices {
     fun getHistoryTransaksi(@Query("token") token: String?,@Query("transaksi_id") transaksi_id: String?) : Call<HistoryTransaksiResponse>
 
     @GET("transaksi/chart")
-    fun getDataChart(@Query("token") token: String?) : Call<ChartTransaksiResponse>
+    fun getDataChart(@Query("token") token: String?,@Query("selected_month") selected_month: String?) : Call<ChartTransaksiResponse>
 
     @GET("transaksi/report")
     fun getReportUntung(@Query("token") token: String?,@Query("dari") dari: String?,@Query("sampai") sampai: String?) : Call<UntungResponse>
