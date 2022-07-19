@@ -32,6 +32,9 @@ class UbahProfileActivity : BaseActivity() {
         binding.btnUpdate.setOnClickListener {
             checkValidation()
         }
+        binding.btnUpdatePassword.setOnClickListener {
+            checkValidationPassword()
+        }
         binding.ivBack.setOnClickListener {
             onBackPressed()
         }
@@ -62,6 +65,21 @@ class UbahProfileActivity : BaseActivity() {
             showErrorMessage("Nama UMKM harus diisi")
         }else{
             updateProfile(phone,alamat,pemilik,namaUmkm)
+        }
+    }
+
+    fun checkValidationPassword(){
+        val password = binding.etPassword.text.toString()
+        val confirm_password = binding.etCPassword.text.toString()
+
+        if (password.isNullOrBlank()){
+            showErrorMessage("Password baru belum diisi")
+        }else if (confirm_password.isNullOrBlank()){
+            showErrorMessage("Konfirmasi Password baru belum diisi")
+        }else if (!password.equals(confirm_password)){
+            showErrorMessage("Konfirmasi password tidak valid")
+        }else {
+            updatePassword(password)
         }
     }
 
@@ -125,5 +143,47 @@ class UbahProfileActivity : BaseActivity() {
             }
         )
 
+    }
+
+    fun updatePassword(password : String){
+        showLoading(this)
+
+        val builder =
+            MultipartBody.Builder().setType(MultipartBody.FORM)
+        builder.addFormDataPart("password",password)
+        val requestBody: RequestBody = builder.build()
+
+        ApiMain().services.editProfil(mUserPref.getToken(),requestBody).enqueue(
+            object : Callback<CommonResponse> {
+                override fun onFailure(call: Call<CommonResponse>, t: Throwable) {
+                    showErrorMessage("gagal melakukan simpan data, coba lagi nanti")
+                    Log.d(TAG_UPDATE_USER,t.message.toString())
+                    dismissLoading()
+                }
+                override fun onResponse(call: Call<CommonResponse>, response: Response<CommonResponse>) {
+                    val apiResponse = response.body()
+                    val responseInfo = response.code()
+                    Log.d(TAG_UPDATE_USER,"body "+apiResponse!!.toString())
+                    Log.d(TAG_UPDATE_USER,"code "+responseInfo.toString())
+
+                    dismissLoading()
+                    if(response.code() == 200) {
+                        showSuccessMessage(apiResponse.message)
+
+                        SharedVariable.nextFragment = ""
+                        val i = Intent(this@UbahProfileActivity, HomeActivity::class.java)
+                        startActivity(i)
+                        finish()
+                    }else if (response.code() == 202){
+                        showErrorMessage(apiResponse.message)
+                    }else if (response.code() == 401){
+                        showErrorMessage("terjadi error pada token, login kembali..")
+                        logout()
+                        val i = Intent(this@UbahProfileActivity, SplashActivity::class.java)
+                        startActivity(i)
+                    }
+                }
+            }
+        )
     }
 }
