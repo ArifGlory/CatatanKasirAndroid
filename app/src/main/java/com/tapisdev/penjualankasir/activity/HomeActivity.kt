@@ -2,18 +2,22 @@ package com.tapisdev.penjualankasir.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tapisdev.lokamotor.base.BaseActivity
+import com.tapisdev.penjualankasir.MainActivity
 import com.tapisdev.penjualankasir.R
 import com.tapisdev.penjualankasir.adapter.AdapterPelanggan
 import com.tapisdev.penjualankasir.databinding.ActivityHomeBinding
@@ -34,6 +38,7 @@ class HomeActivity : BaseActivity() {
     private lateinit var binding: ActivityHomeBinding
     lateinit var nextFragment  : Fragment
     var TAG_DELETE_PELANGGAN = "deletepelanggan"
+    var listener: DialogInterface.OnClickListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,5 +151,26 @@ class HomeActivity : BaseActivity() {
             .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
             .replace(R.id.content, fragment, fragment.javaClass.getSimpleName())
             .commit()
+    }
+
+    override fun onBackPressed() {
+       // super.onBackPressed()
+        val builder =
+            AlertDialog.Builder(this)
+        builder.setMessage("Apakan anda ingin keluar dari aplikasi ? ")
+        builder.setCancelable(false)
+        val i = Intent(this,MainActivity::class.java)
+
+        listener = DialogInterface.OnClickListener { dialog, which ->
+            if (which == DialogInterface.BUTTON_POSITIVE) {
+                startActivity(i)
+            }
+            if (which == DialogInterface.BUTTON_NEGATIVE) {
+                dialog.cancel()
+            }
+        }
+        builder.setPositiveButton("Ya", listener)
+        builder.setNegativeButton("Tidak", listener)
+        builder.show()
     }
 }

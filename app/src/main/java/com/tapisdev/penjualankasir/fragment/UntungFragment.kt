@@ -65,6 +65,7 @@ class UntungFragment : Fragment() {
     var TAG_GET_MORE_TRANSAKSI = "moretransaksi"
     var dari = ""
     var sampai = ""
+    var totalUntung = 0
 
 
     override fun onCreateView(
@@ -192,6 +193,13 @@ class UntungFragment : Fragment() {
                         dari = tgl_mulai
                         sampai = tgl_akhir
                         binding.fabDownload.visibility = View.VISIBLE
+
+                        for (i in 0 until listTransaksi.size){
+                            val untung = listTransaksi.get(i).total_untung
+                            totalUntung = totalUntung + untung!!
+                        }
+                        binding.tvKeuntunganTotal.setText("Rp. "+df.format(totalUntung))
+
                     }
 
                 }else {

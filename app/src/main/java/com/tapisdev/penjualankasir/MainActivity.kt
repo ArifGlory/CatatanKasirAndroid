@@ -1,9 +1,11 @@
 package com.tapisdev.penjualankasir
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import com.tapisdev.lokamotor.base.BaseActivity
 import com.tapisdev.penjualankasir.activity.HomeActivity
 import com.tapisdev.penjualankasir.activity.LupaPasswordActivity
@@ -23,6 +25,7 @@ class MainActivity : BaseActivity() {
     lateinit var binding  : ActivityMainBinding
     lateinit var loginInfo: LoginInfo
     var TAG_LOGIN = "login"
+    var listener: DialogInterface.OnClickListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,5 +94,25 @@ class MainActivity : BaseActivity() {
                 }
             }
         )
+    }
+
+    override fun onBackPressed() {
+        val builder =
+            AlertDialog.Builder(this)
+        builder.setMessage("Apakan anda ingin keluar dari aplikasi ? ")
+        builder.setCancelable(false)
+
+        listener = DialogInterface.OnClickListener { dialog, which ->
+            if (which == DialogInterface.BUTTON_POSITIVE) {
+                finishAffinity()
+                System.exit(0)
+            }
+            if (which == DialogInterface.BUTTON_NEGATIVE) {
+                dialog.cancel()
+            }
+        }
+        builder.setPositiveButton("Ya", listener)
+        builder.setNegativeButton("Tidak", listener)
+        builder.show()
     }
 }
