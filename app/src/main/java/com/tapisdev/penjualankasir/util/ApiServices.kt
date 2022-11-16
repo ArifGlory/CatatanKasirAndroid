@@ -82,11 +82,17 @@ interface ApiServices {
     @POST("hutang/add")
     fun saveHutang(@Query("token") token: String?,@Body hutangInfo: HutangInfo) : Call<CommonResponse>
 
+    @POST("hutang/add/cicilan")
+    fun saveCicilanHutang(@Query("token") token: String?,@Body cicilanHutangInfo: CicilanHutangInfo) : Call<CommonResponse>
+
     @POST("hutang/update")
     fun editHutang(@Query("token") token: String?,@Body file : RequestBody) : Call<CommonResponse>
 
     @GET("hutang/report")
     fun getReportHutang(@Query("token") token: String?,@Query("dari") dari: String?,@Query("sampai") sampai: String?) : Call<HutangResponse>
+
+    @GET("hutang/data/cicilan")
+    fun getDataCicilan(@Query("token") token: String?,@Query("id_hutang") id_hutang: String?) : Call<CicilanHutangResponse>
 
 
 

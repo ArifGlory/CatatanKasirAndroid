@@ -60,7 +60,7 @@
                     android:layout_marginHorizontal="10dp"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/cera_black"
-                    android:text="Keuntungan"
+                    android:text="Keuangan"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 

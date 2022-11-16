@@ -59,7 +59,10 @@ class RegisterActivity : BaseActivity() {
             showErrorMessage("Konfirmasi Password Belum diisi")
         }else if (!password.equals(confirm_password)){
             showErrorMessage("Konfirmasi password tidak valid")
-        }else {
+        }else if (password.length < 6){
+            showErrorMessage("password harus lebih dari 6 karakter")
+        }
+        else {
             registerInfo = RegisterInfo(email, password, name, nama_umkm, phone, alamat)
             sendRegistration(registerInfo)
         }

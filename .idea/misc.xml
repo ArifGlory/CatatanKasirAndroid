@@ -42,6 +42,7 @@
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/activity_tambah_hutang_saya.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/activity_tambah_pelanggan.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/activity_ubah_barang.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/activity_ubah_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/bottom_sheet_select_pelanggan.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/bottom_sheet_select_time_hutang.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/bottom_sheet_select_time_untung.xml" value="0.36666666666666664" />
@@ -51,12 +52,14 @@
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/fragment_stok.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/fragment_transaksi.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/fragment_untung.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/items_cicilan.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/items_hutang.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/items_keranjang.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/items_pelanggan.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/items_transaksi.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/row_spinner.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/shimmer_horizontal.xml" value="0.36666666666666664" />
+        <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/layout/shimmer_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Project/AndroidProjects/PenjualanKasir/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
       </map>
     </option>

@@ -74,29 +74,29 @@
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardPelanggan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:id="@+id/cardPelanggan"
                         android:clickable="true"
+                        android:focusable="true"
                         app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="10dp"
-                        android:focusable="true">
+                        app:cardCornerRadius="10dp">
 
 
                         <RelativeLayout
+                            android:id="@+id/rlLaporanUntung"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:id="@+id/rlLaporanUntung"
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="30dp"
                                 android:id="@+id/ivIconHutang"
+                                android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_alignParentLeft="true"
-                                android:src="@drawable/user"/>
+                                android:src="@drawable/user" />
 
                             <TextView
                                 android:id="@+id/tvNamaPelanggan"
@@ -120,14 +120,54 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@+id/ivIconHutang"
+                        android:fontFamily="@font/cera_medium"
+                        android:text="Total hutang"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
                     <com.tapisdev.penjualankasir.customview.EditText_Roboto_Regular
                         android:id="@+id/etHutang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="2dp"
                         android:background="@color/white"
                         android:fontFamily="sans-serif"
                         android:hint="Nominal Hutang"
+                        android:inputType="number"
+                        android:paddingLeft="16.3dp"
+                        android:paddingTop="15.7dp"
+                        android:paddingBottom="15.7dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_800"
+                        android:textSize="15sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="15dp"
+                        android:id="@+id/tvPembayaranCicilan"
+                        android:layout_toEndOf="@+id/ivIconHutang"
+                        android:fontFamily="@font/cera_medium"
+                        android:text="Pembayaran cicilan hutang"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <com.tapisdev.penjualankasir.customview.EditText_Roboto_Regular
+                        android:id="@+id/etBayarHutang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/white"
+                        android:fontFamily="sans-serif"
+                        android:hint="Bayar Hutang"
                         android:inputType="number"
                         android:paddingLeft="16.3dp"
                         android:paddingTop="15.7dp"
@@ -145,7 +185,6 @@
                         android:background="@color/white"
                         android:fontFamily="sans-serif"
                         android:hint="Deskripsi hutang"
-                        android:visibility="gone"
                         android:inputType="textMultiLine"
                         android:lines="3"
                         android:paddingLeft="16.3dp"
@@ -154,39 +193,107 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey_800"
                         android:textSize="15sp"
-                        android:textStyle="normal" />
+                        android:textStyle="normal"
+                        android:visibility="gone" />
 
 
                     <RadioGroup
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
                         <RadioButton
                             android:id="@+id/rbBelumLunas"
-                            android:buttonTint="@color/text_dark"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@color/text_dark"
                             android:text="Belum Lunas" />
+
                         <RadioButton
                             android:id="@+id/rbSudahLunas"
-                            android:buttonTint="@color/text_dark"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:buttonTint="@color/text_dark"
                             android:text="Lunas" />
                     </RadioGroup>
 
                     <Button
+                        android:id="@+id/btnSimpan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:background="@color/colorPrimary"
                         android:fontFamily="@font/cera_medium"
                         android:text="Simpan Perubahan"
-                        android:id="@+id/btnSimpan"
                         android:textColor="@color/white"
-                        android:textSize="15sp" />
+                        android:textSize="12sp" />
 
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/grey_200"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/tvInfoCicilan"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/ivIconHutang"
+                        android:fontFamily="@font/cera_medium"
+                        android:text="Riwayat Cicilan Hutang"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvCicilan"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clipToPadding="false"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center_horizontal"
+                            android:id="@+id/tvInfoEmpty"
+                            android:visibility="gone"
+                            android:fontFamily="@font/cera_medium"
+                            android:text="Belum ada data cicilan untuk saat ini"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
+                        <include
+                            layout="@layout/shimmer_main"
+                            android:id="@+id/shimmer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
