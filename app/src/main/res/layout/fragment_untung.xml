@@ -66,6 +66,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/rlTotalUntung"
+                    android:visibility="gone"
                     android:layout_height="wrap_content">
 
                     <TextView
@@ -88,6 +90,34 @@
 
                 </RelativeLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_gravity="left"
+                        android:fontFamily="@font/cera_black"
+                        android:text="Penjualan"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        android:fontFamily="@font/cera_black"
+                        android:text="Keuntungan"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

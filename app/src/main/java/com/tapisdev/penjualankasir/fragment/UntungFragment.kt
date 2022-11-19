@@ -107,7 +107,7 @@ class UntungFragment : Fragment() {
 
 
         getDataUntung()
-        getTotalUntung()
+        //getTotalUntung()
         return root
     }
 
