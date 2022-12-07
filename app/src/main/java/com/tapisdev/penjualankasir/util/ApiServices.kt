@@ -67,6 +67,9 @@ interface ApiServices {
     @GET("transaksi/total-untung")
     fun getTotalUntung(@Query("token") token: String?) : Call<TotalUntungResponse>
 
+    @GET("transaksi/total-penjualan")
+    fun getTotalPenjualan(@Query("token") token: String?) : Call<TotalUntungResponse>
+
     @GET("transaksi/detail")
     fun getHistoryTransaksi(@Query("token") token: String?,@Query("transaksi_id") transaksi_id: String?) : Call<HistoryTransaksiResponse>
 

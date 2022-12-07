@@ -107,7 +107,8 @@ class UntungFragment : Fragment() {
 
 
         getDataUntung()
-        //getTotalUntung()
+        getTotalUntung()
+        getTotalPenjualan()
         return root
     }
 
@@ -270,7 +271,7 @@ class UntungFragment : Fragment() {
                     Log.d(TAG_GET_TRANSAKSI,"rusak : "+t.message.toString())
                 }
             }
-        })
+        })  
     }
 
     fun getTotalUntung(){
@@ -278,7 +279,7 @@ class UntungFragment : Fragment() {
 
         ApiMain().services.getTotalUntung(mUserPref.getToken()).enqueue(object :
             retrofit2.Callback<TotalUntungResponse> {
-            @SuppressLint("NotifyDataSetChanged")
+            @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
             override fun onResponse(call: Call<TotalUntungResponse>, response: Response<TotalUntungResponse>) {
                 //Tulis code jika response sukses
                 Log.d(TAG_GET_TRANSAKSI,response.toString())
@@ -291,14 +292,56 @@ class UntungFragment : Fragment() {
                     val totalUntung = responAPI!!.data
                     val total =  totalUntung.toInt()
                     Log.d(TAG_GET_TOTALUNTUNG,"hasil : "+totalUntung)
-                    binding.progressBar.visibility = View.GONE
+                   /* binding.progressBar.visibility = View.GONE
                     binding.tvKeuntunganTotal.setText("Rp. "+df.format(total))
-                    binding.tvKeuntunganTotal.visibility = View.VISIBLE
+                    binding.tvKeuntunganTotal.visibility = View.VISIBLE*/
+                    binding.tvTotalUntung.setText("Rp. "+df.format(total))
 
 
                 }else {
                     binding.progressBar.visibility = View.GONE
                     Toasty.error(requireContext(), "gagal mengambil data total untung", Toast.LENGTH_SHORT, true).show()
+                    Log.d(TAG_GET_TRANSAKSI,"err :"+response.message())
+                }
+            }
+            override fun onFailure(call: Call<TotalUntungResponse>, t: Throwable){
+                //Tulis code jika response fail
+                binding.progressBar.visibility = View.GONE
+                val errMsg = t.message.toString()
+                if (errMsg.takeLast(6).equals("$.null")){
+                    Log.d(TAG_GET_TRANSAKSI,"rusak nya gpapa kok  ")
+                }else{
+                    Toasty.error(requireContext(), "response failure for more data", Toast.LENGTH_SHORT, true).show()
+                    Log.d(TAG_GET_TRANSAKSI,"rusak : "+t.message.toString())
+                }
+            }
+        })
+    }
+
+    fun getTotalPenjualan(){
+        binding.progressBar.visibility = View.VISIBLE
+
+        ApiMain().services.getTotalPenjualan(mUserPref.getToken()).enqueue(object :
+            retrofit2.Callback<TotalUntungResponse> {
+            @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
+            override fun onResponse(call: Call<TotalUntungResponse>, response: Response<TotalUntungResponse>) {
+                //Tulis code jika response sukses
+                Log.d(TAG_GET_TRANSAKSI,response.toString())
+                Log.d(TAG_GET_TRANSAKSI,"http status : "+response.code())
+
+
+                if(response.code() == 200) {
+                    val responAPI = response.body()
+                    Log.d(TAG_GET_TOTALUNTUNG,"respon api : "+responAPI.toString())
+                    val totalPenjualan = responAPI!!.data
+                    val total =  totalPenjualan.toInt()
+                    Log.d(TAG_GET_TOTALUNTUNG,"total penjualan : "+totalPenjualan)
+                    binding.tvTotalPenjualan.setText("Rp. "+df.format(total))
+
+
+                }else {
+                    binding.progressBar.visibility = View.GONE
+                    Toasty.error(requireContext(), "gagal mengambil data total penjualan", Toast.LENGTH_SHORT, true).show()
                     Log.d(TAG_GET_TRANSAKSI,"err :"+response.message())
                 }
             }
